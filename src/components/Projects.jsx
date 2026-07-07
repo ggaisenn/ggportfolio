@@ -46,6 +46,7 @@ const Projects = () => {
             </div>
             <div className="text-slate-300 space-y-2">
               <p><span className="text-purple-400">Step 1:</span> Block metadata struct <span className="text-green-400">✔</span></p>
+              <p><span className="text-purple-400">Step 2:</span> Alignment Macros <span className="text-green-400">✔</span></p>
               <p><span className="text-purple-400">Step 3:</span> First-Fit search algorithm <span className="text-green-400">✔</span></p>
               <p><span className="text-purple-400">Step 4:</span> OS memory request (sbrk) <span className="text-green-400">✔</span></p>
               <p><span className="text-purple-400">Step 5:</span> Block splitting <span className="text-green-400">✔</span></p>
