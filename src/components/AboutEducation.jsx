@@ -36,6 +36,53 @@ const AboutEducation = () => {
           </div>
         </div>
 
+        {/* Education column */}
+        <div className="space-y-6" data-aos="fade-up" data-aos-delay="200">
+          <div className="glass-card p-6 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+              <GraduationCap size={64} />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">ABV-IIITM Gwalior</h3>
+            <p className="text-purple-400 font-medium mb-4">B.Tech Computer Science and Engineering</p>
+            <div className="flex flex-col gap-2 text-slate-400 text-sm">
+              <div className="flex items-center gap-2"><Calendar size={16} /> <span>Present</span></div>
+              <div className="flex items-center gap-2"><MapPin size={16} /> <span>Madhya Pradesh, India</span></div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-slate-700/50">
+              <p className="text-sm text-slate-300"><span className="text-white font-semibold">1st Year CGPA : </span> 8.34</p>
+              <p className="text-sm text-slate-300"><span className="text-white font-semibold">Overall CGPA  : </span>  8.34</p>
+            </div>
+          </div>
+
+          <div className="glass-card p-6 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+              <BookOpen size={64} />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">Al Noor International School</h3>
+            <p className="text-purple-400 font-medium mb-4">CBSE (Grades VII - Science Stream XII)</p>
+            <div className="flex flex-col gap-2 text-slate-400 text-sm">
+              <div className="flex items-center gap-2"><Calendar size={16} /> <span>2019 - 2025</span></div>
+              <div className="flex items-center gap-2"><MapPin size={16} /> <span>Kingdom of Bahrain</span></div>
+            </div>
+            <div className="mt-4 pt-4 border-t border-slate-700/50 space-y-2">
+              <p className="text-sm text-slate-300"><span className="text-white font-semibold">Subjects Taken (Grade XI & XII):</span> Physics, Chemistry, Mathematics, Biology, English Core</p>
+              <p className="text-sm text-slate-300"><span className="text-white font-semibold">Grade (XII): </span>92.2%</p>
+              <p className="text-sm text-slate-300"><span className="text-white font-semibold">Grade (X): </span>88.8%</p>
+            </div>
+          </div>
+
+          <div className="glass-card p-6 relative overflow-hidden group opacity-80 hover:opacity-100">
+            <div className="absolute top-0 right-0 p-6 opacity-10 group-hover:opacity-20 transition-opacity">
+              <BookOpen size={64} />
+            </div>
+            <h3 className="text-xl font-bold text-white mb-2">New Horizon School</h3>
+            <p className="text-purple-400 font-medium mb-4">CBSE (Kindergarten - Grade VI)</p>
+            <div className="flex flex-col gap-2 text-slate-400 text-sm">
+              <div className="flex items-center gap-2"><Calendar size={16} /> <span>2010 - 2019</span></div>
+              <div className="flex items-center gap-2"><MapPin size={16} /> <span>Kingdom of Bahrain</span></div>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
