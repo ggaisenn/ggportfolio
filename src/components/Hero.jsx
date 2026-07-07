@@ -39,6 +39,27 @@ const Hero = () => {
             </p>
           </div>
         </div>
+
+        {/* Right Column - Image Box */}
+        <div className="flex-1 flex justify-center lg:justify-start w-full" data-aos="fade-left">
+          <div className="relative w-full max-w-md xl:max-w-lg">
+            {/* Glowing ambient shadow behind the image */}
+            <div className="absolute inset-0 bg-purple-500/20 rounded-2xl blur-3xl animate-pulse"></div>
+            
+            <img
+              src="/profile.jpeg"
+              alt="Gaurav Gaisenn"
+              className="relative z-10 w-full aspect-[3/4] object-cover rounded-2xl border border-slate-700/50 shadow-2xl glass"
+            />
+          </div>
+        </div>
+
+      </div>
+
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce hidden md:block">
+        <a href="#about" className="text-slate-500 hover:text-white transition-colors">
+          <ChevronDown size={32} />
+        </a>
       </div>
     </section>
   );
