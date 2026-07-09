@@ -27,23 +27,23 @@ const ProgramsAchievements = () => {
   return (
     <section id="achievements" className="pt-20">
       <div className="flex items-center gap-4 mb-12" data-aos="fade-right">
-        <h2 className="text-3xl md:text-4xl font-bold text-white">Programs & Achievements</h2>
-        <div className="h-px bg-slate-700 flex-grow max-w-xs"></div>
+        <h2 className="text-3xl md:text-4xl font-bold theme-text">Programs & Achievements</h2>
+        <div className="h-px bg-[var(--border-subtle)] flex-grow max-w-xs"></div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {achievements.map((item, index) => (
-          <div key={index} className="glass-card p-6 flex flex-col h-full hover:bg-slate-800/50" data-aos="zoom-in" data-aos-delay={(index % 3) * 100}>
+          <div key={index} className="glass-card p-6 flex flex-col h-full theme-card-hover" data-aos="zoom-in" data-aos-delay={(index % 3) * 100}>
             <div className="flex justify-between items-start mb-4">
-              <div className="w-12 h-12 rounded-full bg-slate-800 flex items-center justify-center border border-slate-700">
+              <div className="w-12 h-12 rounded-full bg-[var(--card-bg)] flex items-center justify-center border border-[var(--card-border)]">
                 <Trophy className={getIconColor(item.type)} size={24} />
               </div>
-              <span className="text-sm font-bold text-slate-500 bg-slate-900 px-3 py-1 rounded-full border border-slate-800">
+              <span className="text-sm font-bold theme-muted bg-[var(--card-bg)] px-3 py-1 rounded-full border border-[var(--card-border)]">
                 {item.year}
               </span>
             </div>
-            <h3 className="text-lg font-bold text-white mb-2">{item.title}</h3>
-            <p className="text-slate-400 text-sm mt-auto">{item.detail}</p>
+            <h3 className="text-lg font-bold theme-text mb-2">{item.title}</h3>
+            <p className="theme-muted text-sm mt-auto">{item.detail}</p>
           </div>
         ))}
       </div>

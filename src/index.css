@@ -2,11 +2,56 @@
 @import "tailwindcss";
 @import "aos/dist/aos.css";
 
+/* ── Theme tokens ────────────────────────────────────────────── */
+html.dark {
+  --bg-base:       #020617;   /* slate-950  */
+  --text-base:     #e2e8f0;   /* slate-200  */
+  --text-muted:    #94a3b8;   /* slate-400  */
+  --text-subtle:   #64748b;   /* slate-500  */
+  --border-subtle: rgba(51,65,85,0.5);
+  --glass-bg:      rgba(15,23,42,0.4);
+  --glass-border:  rgba(51,65,85,0.5);
+  --nav-glass:     rgba(255,255,255,0.03);
+  --nav-border:    rgba(255,255,255,0.05);
+  --card-bg:       #1e293b;   /* slate-800  */
+  --card-hover-bg: #334155;   /* slate-700  */
+  --card-border:   #334155;   /* slate-700  */
+  --ambient-1:     rgba(88,28,135,0.20);
+  --ambient-2:     rgba(112,26,117,0.10);
+  --ambient-3:     rgba(131,24,67,0.10);
+  --footer-border: rgba(30,41,59,0.5);
+}
+
+html.light {
+  --bg-base:       #f8fafc;   /* slate-50   */
+  --text-base:     #0f172a;   /* slate-900  */
+  --text-muted:    #475569;   /* slate-600  */
+  --text-subtle:   #94a3b8;   /* slate-400  */
+  --border-subtle: rgba(203,213,225,0.8);
+  --glass-bg:      rgba(255,255,255,0.65);
+  --glass-border:  rgba(203,213,225,0.6);
+  --nav-glass:     rgba(248,250,252,0.80);
+  --nav-border:    rgba(203,213,225,0.4);
+  --card-bg:       #f1f5f9;   /* slate-100  */
+  --card-hover-bg: #e2e8f0;   /* slate-200  */
+  --card-border:   #cbd5e1;   /* slate-300  */
+  --ambient-1:     rgba(192,132,252,0.15);
+  --ambient-2:     rgba(232,121,249,0.10);
+  --ambient-3:     rgba(244,114,182,0.10);
+  --footer-border: rgba(203,213,225,0.5);
+}
+
+/* ── Base styles ─────────────────────────────────────────────── */
 html {
   font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
-  background-color: #020617; /* slate-950 */
-  color: #e2e8f0; /* slate-200 */
+  background-color: var(--bg-base, #020617);
+  color: var(--text-base, #e2e8f0);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+*, *::before, *::after {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
 body {
@@ -15,29 +60,82 @@ body {
   padding: 0;
 }
 
+/* ── Glass utilities ─────────────────────────────────────────── */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--nav-glass);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--nav-border);
 }
 
 .glass-card {
-  background: rgba(15, 23, 42, 0.4);
+  background: var(--glass-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(51, 65, 85, 0.5);
+  border: 1px solid var(--glass-border);
   border-radius: 1rem;
   transition: all 0.3s ease;
 }
 .glass-card:hover {
-  border-color: rgba(168, 85, 247, 0.5); /* purple-500/50 */
+  border-color: rgba(168, 85, 247, 0.5);
   transform: translateY(-4px);
 }
 
+/* ── Text & UI helpers ───────────────────────────────────────── */
 .text-gradient {
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(to right, #c084fc, #d8b4fe, #f472b6); /* purple-400, purple-300, pink-400 */
+  background-image: linear-gradient(to right, #c084fc, #d8b4fe, #f472b6);
+}
+
+/* Theme-aware colour helpers used inside components */
+.theme-text       { color: var(--text-base); }
+.theme-muted      { color: var(--text-muted); }
+.theme-subtle     { color: var(--text-subtle); }
+.theme-card-bg    { background-color: var(--card-bg); }
+.theme-card-hover:hover { background-color: var(--card-hover-bg); }
+.theme-card-border { border-color: var(--card-border); }
+
+/* ── Smooth theme toggle button ──────────────────────────────── */
+.theme-toggle {
+  position: relative;
+  width: 52px;
+  height: 28px;
+  border-radius: 9999px;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #7c3aed, #a855f7);
+  box-shadow: 0 0 12px rgba(168,85,247,0.4);
+  transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+html.light .theme-toggle {
+  background: linear-gradient(135deg, #fbbf24, #f59e0b);
+  box-shadow: 0 0 12px rgba(251,191,36,0.4);
+}
+
+.theme-toggle-thumb {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  font-size: 13px;
+  line-height: 1;
+}
+
+html.dark .theme-toggle-thumb {
+  transform: translateX(24px);
+}
+html.light .theme-toggle-thumb {
+  transform: translateX(0px);
 }
