@@ -1,64 +1,62 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { Mic2, Video, ChevronLeft, ChevronRight } from 'lucide-react';
 import { FaYoutube } from 'react-icons/fa';
 
 const Activities = () => {
-
   const publicSpeakingImages = [
 
   ];
 
-  const contentCreationImages = [
-
-  ];
+  const contentCreationImages = [];
   
-  const [speakingIndex, setSpeakingIndex] = useState(0);
-  const [speakingDir, setSpeakingDir] = useState('next');
+  // Track current index and previous index to isolate the transition states
+  const [speaking, setSpeaking] = useState({ current: 0, prev: null });
+  const [content, setContent] = useState({ current: 0, prev: null });
 
-  const [contentIndex, setContentIndex] = useState(0);
-  const [contentDir, setContentDir] = useState('next');
+  // Use a ref to always have the latest array length in the interval
+  const lenRef = useRef(publicSpeakingImages.length);
+  useEffect(() => {
+    lenRef.current = publicSpeakingImages.length;
+  }, [publicSpeakingImages.length]);
   
   useEffect(() => {
+    if (lenRef.current <= 1) return;
     const timer = setInterval(() => {
-      setSpeakingDir('next');
-      setContentDir('next');
-      setSpeakingIndex((prev) => (prev + 1) % publicSpeakingImages.length);
-      setContentIndex((prev) => (prev + 1) % contentCreationImages.length);
+      setSpeaking((prev) => ({
+        prev: prev.current,
+        current: (prev.current + 1) % lenRef.current
+      }));
     }, 5000); 
 
     return () => clearInterval(timer); 
-  }, [publicSpeakingImages.length, contentCreationImages.length]);
+  }, []);
 
   const handleSpeakingPrev = () => {
-    setSpeakingDir('prev');
-    setSpeakingIndex((prev) => (prev === 0 ? publicSpeakingImages.length - 1 : prev - 1));
+    setSpeaking((prev) => ({
+      prev: prev.current,
+      current: prev.current === 0 ? publicSpeakingImages.length - 1 : prev.current - 1
+    }));
   };
 
   const handleSpeakingNext = () => {
-    setSpeakingDir('next');
-    setSpeakingIndex((prev) => (prev + 1) % publicSpeakingImages.length);
+    setSpeaking((prev) => ({
+      prev: prev.current,
+      current: (prev.current + 1) % publicSpeakingImages.length
+    }));
   };
 
-  const handleContentPrev = () => {
-    setContentDir('prev');
-    setContentIndex((prev) => (prev === 0 ? contentCreationImages.length - 1 : prev - 1));
-  };
-
-  const handleContentNext = () => {
-    setContentDir('next');
-    setContentIndex((prev) => (prev + 1) % contentCreationImages.length);
-  };
-
-  // Helper function to return correct slide classes based on current index and intent direction
-  const getSlideClass = (idx, activeIndex, direction) => {
-    if (idx === activeIndex) return 'translate-x-0 opacity-100 z-10';
-    
-    // Position non-active images outside viewport container
-    if (direction === 'next') {
-      return idx > activeIndex ? 'translate-x-full opacity-0 z-0' : '-translate-x-full opacity-0 z-0';
-    } else {
-      return idx < activeIndex ? '-translate-x-full opacity-0 z-0' : 'translate-x-full opacity-0 z-0';
+  // Helper function to explicitly define positions for standard rightward push transitions
+  const getSlideClass = (idx, current, prev) => {
+    // 1. Current slide is centered on stage
+    if (idx === current) {
+      return 'translate-x-0 opacity-100 z-10';
     }
+    // 2. The slide that just finished being active pushes off to the right
+    if (idx === prev) {
+      return 'translate-x-full opacity-100 z-0';
+    }
+    // 3. All other slides stay tucked away completely to the left, ready to enter
+    return '-translate-x-full opacity-0 z-0';
   };
 
   return (
@@ -69,10 +67,7 @@ const Activities = () => {
       </div>
 
       <div className="flex flex-col gap-8">
-        
-
         <div className="glass-card p-8 group grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
-
           <div>
             <div className="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
               <Mic2 size={32} className="text-purple-400" />
@@ -88,24 +83,37 @@ const Activities = () => {
             </ul>
           </div>
 
-
-          <div className="relative h-64 md:h-full min-h-[480px] rounded-xl overflow-hidden shadow-inner bg-slate-900/40">
+          {/* Public Speaking Slider Frame Container */}
+          <div className="relative h-64 md:h-full min-h-[480px] rounded-xl overflow-hidden shadow-inner bg-slate-900/40 group/slider">
             {publicSpeakingImages.map((imgUrl, idx) => (
               <img
                 key={idx}
                 src={imgUrl}
                 alt={`Public Speaking ${idx}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                  idx === speakingIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                }`}
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${getSlideClass(idx, speaking.current, speaking.prev)}`}
               />
             ))}
+
+            {publicSpeakingImages.length > 1 && (
+              <>
+                <button 
+                  onClick={handleSpeakingPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button 
+                  onClick={handleSpeakingNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
           </div>
         </div>
 
-   
         <div className="glass-card p-8 group grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up" data-aos-delay="100">
-
           <div>
             <div className="flex justify-between items-start mb-6">
               <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -138,21 +146,18 @@ const Activities = () => {
             </div>
           </div>
 
-  
-          <div className="relative h-64 md:h-full min-h-[240px] rounded-xl overflow-hidden shadow-inner bg-slate-900/40">
+          {/* Content Creation Slider Frame Container */}
+          <div className="relative h-64 md:h-full min-h-[280px] rounded-xl overflow-hidden shadow-inner bg-slate-900/40 group/slider">
             {contentCreationImages.map((imgUrl, idx) => (
               <img
                 key={idx}
                 src={imgUrl}
                 alt={`Content Creation ${idx}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ease-in-out ${
-                  idx === contentIndex ? 'opacity-100 z-10' : 'opacity-0 z-0'
-                }`}
+                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${getSlideClass(idx, content.current, content.prev)}`}
               />
             ))}
           </div>
         </div>
-
       </div>
     </section>
   );
