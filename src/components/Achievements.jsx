@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trophy, Star, Medal } from 'lucide-react';
 
-const ProgramsAchievements = () => {
+const Achievements = () => {
   const achievements = [
     { year: '2026', title: 'AI SYNERGY HACKATHON 2026', event: 'GWALIOR AI SUMMIT 2026', acheivement: 'WINNER', issuer:'ABV-IIITM GWALIOR', venue:'Gwalior, Madhya Pradesh, India', date:'April 2026', type: 'gold'},
     { year: '2025', title: 'Grade 12 Board Exam', event:'-', acheivement: 'School Subject Topper - Physics & Biology', issuer:'CBSE', venue:'-', date:'May 2025', type: 'gold' },
@@ -56,4 +56,4 @@ const ProgramsAchievements = () => {
   );
 };
 
-export default ProgramsAchievements;
+export default Achievements;
