@@ -3,16 +3,16 @@ import { Trophy, Star, Medal } from 'lucide-react';
 
 const ProgramsAchievements = () => {
   const achievements = [
-    { year: '2025', title: 'Grade 12 Board Exam', detail: 'School Subject Topper - Physics & Biology', type: 'gold' },
-    { year: '2025', title: 'Grade 12 Board Exam', detail: '2nd School Topper', type: 'silver' },
-    { year: '2024', title: 'Inter-School Debate', detail: 'NMS Reverberations 2024', type: 'bronze' },
-    { year: '2024', title: 'Quiz Competition', detail: '5th Bharat Ko Janiye (Govt. of India)', type: 'silver' },
-    { year: '2023', title: 'Grade 10 Board Exam', detail: 'School Subject Topper - Social Science', type: 'gold' },
-    { year: '2023', title: 'Elocution', detail: 'Al Noor International School', type: 'silver' },
-    { year: '2022', title: 'Reading for All', detail: 'Al Noor International School', type: 'gold' },
-    { year: '2022', title: 'Film Making Competition', detail: 'SWIFF (Honorable Mention)', type: 'silver' },
-    { year: '2021', title: 'Debate Competition', detail: 'LoopGood.org (Winner)', type: 'gold' },
-    { year: '2021', title: 'Video Making Competition', detail: 'Technovation - VID-TECH', type: 'silver' },
+    { year: '2026', title: 'AI SYNERGY HACKATHON 2026', event: 'GWALIOR AI SUMMIT 2026', acheivement: 'WINNER', issuer:'ABV-IIITM GWALIOR', venue:'Gwalior, Madhya Pradesh, India', date:'April 2026', type: 'gold'},
+    { year: '2025', title: 'Grade 12 Board Exam', event:'-', acheivement: 'School Subject Topper - Physics & Biology', issuer:'CBSE', venue:'-', date:'May 2025', type: 'gold' },
+    { year: '2025', title: 'Grade 12 Board Exam', event:'-', acheivement: '2nd School Topper', issuer:'CBSE', venue:'-', date:'May 2025', type: 'silver' }, 
+    { year: '2024', title: 'Declamation', event:'-', acheivement: '1st Place', issuer: 'AL NOOR INTERNATIONAL SCHOOL', venue:'Kingdom of Bahrain', date:'December 2024', type: 'gold' },
+    { year: '2024', title: 'Inter-School Speech Competition', event: 'AMH MED-ATHLON 2024', acheivement: 'FINALIST', issuer: 'AMERICAN MISSION HOSPITAL', venue:'Kingdom of Bahrain', date:'November 2024', type: 'blue' },       
+    { year: '2024', title: 'Inter-School Debate', event:"-", acheivement: '3rd Place', issuer:'NEW MILLENNIUM SCHOOL', venue:'Kingdom of Bahrain', date:'October 2024', type: 'bronze' },
+    { year: '2024', title: 'Quiz Competition', event: '5th Bharat Ko Janiye (Govt. of India)', acheivement:'Certificate of Excellence', issuer:'Ministry of External Affairs, Government of India', venue:'-', date:'November, 2024', type: 'silver' },
+    { year: '2023', title: 'Poem Recitation', event:'-', acheivement: '1st Place', issuer: 'AL NOOR INTERNATIONAL SCHOOL', venue:'Kingdom of Bahrain', date:'November 2023', type: 'gold' },
+    { year: '2023', title: 'Elocution', event:'-', acheivement: '2nd Place', issuer: 'AL NOOR INTERNATIONAL SCHOOL', venue:'Kingdom of Bahrain', date:'October 2023', type: 'silver' },
+    { year: '2023', title: 'Grade 10 Board Exam', event:'-', acheivement: ' School Subject Topper - Social Science', issuer: 'CBSE', venue:'-', date:'May, 2023', type: 'gold' },
   ];
 
   const getIconColor = (type) => {
@@ -20,6 +20,7 @@ const ProgramsAchievements = () => {
       case 'gold': return 'text-yellow-400';
       case 'silver': return 'text-slate-300';
       case 'bronze': return 'text-amber-600';
+      case 'blue': return 'text-blue-300';
       default: return 'text-purple-400';
     }
   };
@@ -42,8 +43,12 @@ const ProgramsAchievements = () => {
                 {item.year}
               </span>
             </div>
-            <h3 className="text-lg font-bold theme-text mb-2">{item.title}</h3>
-            <p className="theme-muted text-sm mt-auto">{item.detail}</p>
+            <h2 className="text-xl font-bold theme-text mb-2">{item.title}</h2>
+            <h3 className="text-lg font-bold theme-text mb-2">{item.acheivement}</h3>
+            <p className="theme-muted font-bold text-lg mt-auto">{item.event}</p>
+            <p className="theme-muted font-bold text-sm mt-auto">{item.issuer}</p>
+            <p className="theme-muted text-sm mt-auto">{item.venue}</p>
+            <p className="theme-muted text-sm mt-auto">{item.date}</p>
           </div>
         ))}
       </div>
