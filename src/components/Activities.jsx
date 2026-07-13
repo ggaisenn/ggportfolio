@@ -11,6 +11,9 @@ const Activities = () => {
   const contentCreationImages = [
 
   ];
+  
+  const [speakingIndex, setSpeakingIndex] = useState(0);
+  const [contentIndex, setContentIndex] = useState(0);
 
   return (
     <section id="activities" className="pt-20">
