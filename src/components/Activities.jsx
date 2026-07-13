@@ -14,6 +14,16 @@ const Activities = () => {
   
   const [speakingIndex, setSpeakingIndex] = useState(0);
   const [contentIndex, setContentIndex] = useState(0);
+  
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSpeakingIndex((prevIndex) => (prevIndex + 1) % publicSpeakingImages.length);
+      setContentIndex((prevIndex) => (prevIndex + 1) % contentCreationImages.length);
+    }, 4000);
+
+    return () => clearInterval(timer); 
+  }, [publicSpeakingImages.length, contentCreationImages.length]);
 
   return (
     <section id="activities" className="pt-20">
