@@ -4,33 +4,59 @@ import { FaYoutube } from 'react-icons/fa';
 
 const Activities = () => {
   const publicSpeakingImages = [
-
+    "../../public/talents/ps/1.png",
+    "../../public/talents/ps/2.png",
+    "../../public/talents/ps/3.png",
+    "../../public/talents/ps/4.png",
+    "../../public/talents/ps/5.png",
+    "../../public/talents/ps/6.png",
   ];
 
-  const contentCreationImages = [];
+  const contentCreationImages = [
+    "../../public/talents/gt/1.jpg",
+    "../../public/talents/gt/2.jpg",    
+  ];
   
   // Track current index and previous index to isolate the transition states
   const [speaking, setSpeaking] = useState({ current: 0, prev: null });
   const [content, setContent] = useState({ current: 0, prev: null });
 
-  // Use a ref to always have the latest array length in the interval
-  const lenRef = useRef(publicSpeakingImages.length);
+  // Use refs to always have the latest array lengths in the intervals
+  const speakingLenRef = useRef(publicSpeakingImages.length);
+  const contentLenRef = useRef(contentCreationImages.length);
+
   useEffect(() => {
-    lenRef.current = publicSpeakingImages.length;
-  }, [publicSpeakingImages.length]);
+    speakingLenRef.current = publicSpeakingImages.length;
+    contentLenRef.current = contentCreationImages.length;
+  }, [publicSpeakingImages.length, contentCreationImages.length]);
   
+  // Public Speaking Slider Timer
   useEffect(() => {
-    if (lenRef.current <= 1) return;
+    if (speakingLenRef.current <= 1) return;
     const timer = setInterval(() => {
       setSpeaking((prev) => ({
         prev: prev.current,
-        current: (prev.current + 1) % lenRef.current
+        current: (prev.current + 1) % speakingLenRef.current
       }));
     }, 5000); 
 
     return () => clearInterval(timer); 
   }, []);
 
+  // Content Creation Slider Timer
+  useEffect(() => {
+    if (contentLenRef.current <= 1) return;
+    const timer = setInterval(() => {
+      setContent((prev) => ({
+        prev: prev.current,
+        current: (prev.current + 1) % contentLenRef.current
+      }));
+    }, 5000); 
+
+    return () => clearInterval(timer); 
+  }, []);
+
+  // Public Speaking Navigation
   const handleSpeakingPrev = () => {
     setSpeaking((prev) => ({
       prev: prev.current,
@@ -45,17 +71,29 @@ const Activities = () => {
     }));
   };
 
+  // Content Creation Navigation
+  const handleContentPrev = () => {
+    setContent((prev) => ({
+      prev: prev.current,
+      current: prev.current === 0 ? contentCreationImages.length - 1 : prev.current - 1
+    }));
+  };
+
+  const handleContentNext = () => {
+    setContent((prev) => ({
+      prev: prev.current,
+      current: (prev.current + 1) % contentCreationImages.length
+    }));
+  };
+
   // Helper function to explicitly define positions for standard rightward push transitions
   const getSlideClass = (idx, current, prev) => {
-    // 1. Current slide is centered on stage
     if (idx === current) {
       return 'translate-x-0 opacity-100 z-10';
     }
-    // 2. The slide that just finished being active pushes off to the right
     if (idx === prev) {
       return 'translate-x-full opacity-100 z-0';
     }
-    // 3. All other slides stay tucked away completely to the left, ready to enter
     return '-translate-x-full opacity-0 z-0';
   };
 
@@ -67,6 +105,7 @@ const Activities = () => {
       </div>
 
       <div className="flex flex-col gap-8">
+        {/* Public Speaking Block */}
         <div className="glass-card p-8 group grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
           <div>
             <div className="w-14 h-14 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
@@ -113,6 +152,7 @@ const Activities = () => {
           </div>
         </div>
 
+        {/* Content Creation Block */}
         <div className="glass-card p-8 group grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up" data-aos-delay="100">
           <div>
             <div className="flex justify-between items-start mb-6">
@@ -156,6 +196,23 @@ const Activities = () => {
                 className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${getSlideClass(idx, content.current, content.prev)}`}
               />
             ))}
+
+            {contentCreationImages.length > 1 && (
+              <>
+                <button 
+                  onClick={handleContentPrev}
+                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+                >
+                  <ChevronLeft size={20} />
+                </button>
+                <button 
+                  onClick={handleContentNext}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+                >
+                  <ChevronRight size={20} />
+                </button>
+              </>
+            )}
           </div>
         </div>
       </div>
