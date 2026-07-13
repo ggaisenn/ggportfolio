@@ -3,6 +3,15 @@ import { Mic2, Video } from 'lucide-react';
 import { FaYoutube } from 'react-icons/fa';
 
 const Activities = () => {
+
+  const publicSpeakingImages = [
+
+  ];
+
+  const contentCreationImages = [
+
+  ];
+
   return (
     <section id="activities" className="pt-20">
       <div className="flex items-center gap-4 mb-12" data-aos="fade-right">
