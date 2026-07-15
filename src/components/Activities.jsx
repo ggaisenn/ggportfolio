@@ -153,7 +153,7 @@ const Activities = () => {
         </div>
 
         {/* Content Creation Block */}
-        <div className="glass-card p-8 group grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up" data-aos-delay="100">
+        <div className="glass-card-content p-8 group grid md:grid-cols-2 gap-8 items-center bg-green-600 text-orange-500" data-aos="fade-up" data-aos-delay="100">
           <div>
             <div className="flex justify-between items-start mb-6">
               <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -163,24 +163,26 @@ const Activities = () => {
                 GaisennTalks
               </a>
             </div>
-            <h3 className="text-2xl font-bold theme-text mb-4">Content Creation</h3>
-            <p className="text-slate-300 leading-relaxed mb-6 theme-muted">
+
+            <h3 className="text-2xl font-bold text-orange-400 mb-4">Content Creation</h3>
+
+            <p className="text-orange-200/90 leading-relaxed mb-6">
               Passionate about content creation, having produced videos on YouTube and a few short documentaries. My work has been showcased in film festivals and competitions, gaining valuable experience in storytelling and editing.
             </p>
             
             <div className="space-y-4">
-              <div className="p-4 bg-[var(--card-bg)] rounded-lg border border-[var(--border-subtle)] flex items-center gap-4">
-                <Video className="theme-muted" />
+              <div className="p-4 bg-[var(--card-bg-content))] rounded-lg border border-[var(--card-border-content)] flex items-center gap-4">
+                <Video className="text-orange-400" />
                 <div>
-                  <h4 className="theme-text font-medium">Quiet Leadership</h4>
-                  <p className="text-sm theme-muted">Student World Impact Film Festival (Honorable Mention)</p>
+                  <h4 className="text-orange-300 font-medium">Quiet Leadership</h4>
+                  <p className="text-sm text-orange-200/70">Student World Impact Film Festival (Honorable Mention)</p>
                 </div>
               </div>
-              <div className="p-4 bg-[var(--card-bg)] rounded-lg border border-[var(--border-subtle)] flex items-center gap-4">
-                <Video className="theme-muted" />
+              <div className="p-4 bg-[var(--card-bg-content)] rounded-lg border border-[var(--card-border-content)] flex items-center gap-4">
+                <Video className="text-orange-400" />
                 <div>
-                  <h4 className="theme-text font-medium">The Tale of a Leader</h4>
-                  <p className="text-sm theme-muted">1.6K+ Views Documentary</p>
+                  <h4 className="text-orange-300 font-medium">The Tale of a Leader</h4>
+                  <p className="text-sm text-orange-200/70">1.6K+ Views Documentary</p>
                 </div>
               </div>
             </div>
