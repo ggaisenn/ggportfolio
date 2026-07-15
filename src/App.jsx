@@ -9,6 +9,7 @@ import AboutEducation from './components/AboutEducation';
 import Experience from './components/Experience';
 import Activities from './components/Activities';
 import Projects from './components/Projects';
+import Certifications from './components/Certifications';
 import Achievements from './components/Achievements';
 import Contact from './components/Contact';
 
@@ -41,6 +42,7 @@ function AppContent() {
             <AboutEducation />
             <Activities />
             <Projects />
+            <Certifications/>
             <Achievements />
             <Experience />
             <Contact />
