@@ -22,6 +22,25 @@ const certificationsData = [
     title: "Outskill Generative AI Mastermind",
     organiser: "Outskill",
     image: "../../public/certifications/Gaurav_Gaisenn_Outskill_Certificate.png",
+  },{
+    id: 4,
+    year: "2024-25",
+    title: "5th Bharat Ko Janiye Quiz",
+    organiser: "Ministry of External Affairs, Government of India",
+    image:"../../public/certifications/Gaurav_Gaisenn_Bharat_Ko_Janiye_Certificate.png",
+  },{
+
+    id: 5,
+    year: "2022",
+    title: "Student World Impact Film Festival",
+    organiser: "SWIFF, Waldwick, New Jersey, USA",
+    image:"../../public/certifications/Gaurav-Gaisenn-Student-World-Impact-Film-Festival-Honorable-Mention-The-Quiet-Leadership-of-Carlo-Ancelotti-2022.jpg",
+  },{
+    id: 6,
+    year: "2021",
+    title: "GCL New York AI+Healthcare Summit",
+    organiser: "GCL, New York Chapter, USA",
+    image:"../../public/certifications/Gaurav Gaisenn-GCL-NY-AI+Healthcare-Summit-2021.jpeg",
   }
 ];
 
@@ -44,7 +63,7 @@ const Certifications = () => {
             data-aos-delay={(index % 3) * 100}
           >
             {/* 1. Large Top Image Preview */}
-            <div className="w-full overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-black/5 aspect-[16/10] mb-5 shrink-0">
+            <div className="w-full overflow-hidden rounded-lg border border-[var(--border-subtle)] bg-black/5 aspect-[16/12] mb-5 shrink-0">
               <img 
                 src={item.image} 
                 alt={`${item.title} preview`} 
