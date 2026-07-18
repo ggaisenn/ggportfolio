@@ -57,7 +57,9 @@ const Projects = () => {
               <p><span className="text-purple-600 dark:text-purple-400">Step 10:</span> Namespace debugging flag (`debug`) <span className="text-green-600 dark:text-green-400">✔</span></p>
               <p><span className="text-purple-600 dark:text-purple-400">Step 11:</span> Cross-platform URL format validation <span className="text-green-600 dark:text-green-400">✔</span></p>
               <p><span className="text-purple-600 dark:text-purple-400">Step 12:</span> Host system local app check (command-exists) <span className="text-green-600 dark:text-green-400">✔</span></p>
-              <p><span className="text-purple-600 dark:text-purple-400">Step 13:</span> Cross-Platform App launcher <span className="text-green-600 dark:text-yellow-400">....</span></p>            
+              <p><span className="text-purple-600 dark:text-purple-400">Step 13:</span> (`www.`) protocol handling <span className="text-green-600 dark:text-green-400">✔</span></p> 
+              <p><span className="text-purple-600 dark:text-purple-400">Step 14:</span> macOS App Launch (e.g., --open Slack)	 <span className="text-green-600 dark:text-green-400">✔</span></p> 
+              <p><span className="text-purple-600 dark:text-purple-400">Step 15:</span> Cross-Platform App launcher <span className="text-green-600 dark:text-yellow-400">....</span></p>            
             </div>
           </div>
         </div>
