@@ -47,7 +47,7 @@ const Hero = () => {
             <div className="absolute inset-0 bg-purple-500/20 rounded-2xl blur-3xl animate-pulse"></div>
             
             <img
-              src="/profile.jpeg"
+              src="/profile.avif"
               alt="Gaurav Gaisenn"
               className="relative z-10 w-full aspect-[3/4] object-cover rounded-2xl border border-[var(--border-subtle)] shadow-2xl glass"
             />

@@ -7,7 +7,7 @@ const certificationsData = [
     year: "2026",
     title: "AI SYNERGY HACKATHON 2026",
     organiser: "ABV-IIITM GWALIOR",
-    image: "/certifications/Gaurav_Gaisenn_AI_SYNERGY_HACKATHON_2026.jpg",
+    image: "/certifications/Gaurav_Gaisenn_AI_SYNERGY_HACKATHON_2026.avif",
     link: "#" // Added placeholder: replace with your actual verification URL
   },
   {
@@ -15,7 +15,7 @@ const certificationsData = [
     year: "2025-26",
     title: "Google Cloud Study Jams 2025",
     organiser: "Google Cloud",
-    image: "/certifications/Gaurav_Gaisenn_Google-Cloud-Study-Jams-2025.jpeg",
+    image: "/certifications/Gaurav_Gaisenn_Google-Cloud-Study-Jams-2025.avif",
     link: "#"
   },
   {
@@ -23,7 +23,7 @@ const certificationsData = [
     year: "2025",
     title: "Outskill Generative AI Mastermind",
     organiser: "Outskill",
-    image: "/certifications/Gaurav_Gaisenn_Outskill_Certificate.png",
+    image: "/certifications/Gaurav_Gaisenn_Outskill_Certificate.avif",
     link: "#"
   },
   {
@@ -31,7 +31,7 @@ const certificationsData = [
     year: "2024-25",
     title: "5th Bharat Ko Janiye Quiz",
     organiser: "Ministry of External Affairs, Government of India",
-    image: "/certifications/Gaurav_Gaisenn_Bharat_Ko_Janiye_Certificate.png",
+    image: "/certifications/Gaurav_Gaisenn_Bharat_Ko_Janiye_Certificate.avif",
     link: "#"
   },
   {
@@ -39,7 +39,7 @@ const certificationsData = [
     year: "2022",
     title: "Student World Impact Film Festival",
     organiser: "SWIFF, Waldwick, New Jersey, USA",
-    image: "/certifications/Gaurav-Gaisenn-Student-World-Impact-Film-Festival-Honorable-Mention-The-Quiet-Leadership-of-Carlo-Ancelotti-2022.jpg",
+    image: "/certifications/Gaurav-Gaisenn-Student-World-Impact-Film-Festival-Honorable-Mention-The-Quiet-Leadership-of-Carlo-Ancelotti-2022.avif",
     link: "#"
   },
   {
@@ -47,7 +47,7 @@ const certificationsData = [
     year: "2021",
     title: "GCL New York AI+Healthcare Summit",
     organiser: "GCL, New York Chapter, USA",
-    image: "/certifications/Gaurav_Gaisenn-GCL-NY-AI+Healthcare-Summit-2021.jpeg",
+    image: "/certifications/Gaurav_Gaisenn-GCL-NY-AI+Healthcare-Summit-2021.avif",
     link: "#"
   }
 ];

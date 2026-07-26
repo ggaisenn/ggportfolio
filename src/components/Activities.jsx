@@ -4,17 +4,17 @@ import { FaYoutube } from 'react-icons/fa';
 
 const Activities = () => {
   const publicSpeakingImages = [
-    "/talents/ps/1.png",
-    "/talents/ps/2.png",
-    "/talents/ps/3.png",
-    "/talents/ps/4.png",
-    "/talents/ps/5.png",
-    "/talents/ps/6.png",
+    "/talents/ps/1.avif",
+    "/talents/ps/2.avif",
+    "/talents/ps/3.avif",
+    "/talents/ps/4.avif",
+    "/talents/ps/5.avif",
+    "/talents/ps/6.avif",
   ];
 
   const contentCreationImages = [
-    "/talents/gt/1.jpg",
-    "/talents/gt/2.jpg",    
+    "/talents/gt/1.avif",
+    "/talents/gt/2.avif",    
   ];
   
   // Track current index and previous index to isolate the transition states
