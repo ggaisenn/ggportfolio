@@ -7,40 +7,48 @@ const certificationsData = [
     year: "2026",
     title: "AI SYNERGY HACKATHON 2026",
     organiser: "ABV-IIITM GWALIOR",
-    image: "../certifications/Gaurav_Gaisenn_AI_SYNERGY_HACKATHON_2026.jpg",
+    image: "/certifications/Gaurav_Gaisenn_AI_SYNERGY_HACKATHON_2026.jpg",
+    link: "#" // Added placeholder: replace with your actual verification URL
   },
   {
     id: 2,
     year: "2025-26",
     title: "Google Cloud Study Jams 2025",
     organiser: "Google Cloud",
-    image: "../certifications/Gaurav_Gaisenn_Google-Cloud-Study-Jams-2025.jpeg",
+    image: "/certifications/Gaurav_Gaisenn_Google-Cloud-Study-Jams-2025.jpeg",
+    link: "#"
   },
   {
     id: 3,
     year: "2025",
     title: "Outskill Generative AI Mastermind",
     organiser: "Outskill",
-    image: "../certifications/Gaurav_Gaisenn_Outskill_Certificate.png",
-  },{
+    image: "/certifications/Gaurav_Gaisenn_Outskill_Certificate.png",
+    link: "#"
+  },
+  {
     id: 4,
     year: "2024-25",
     title: "5th Bharat Ko Janiye Quiz",
     organiser: "Ministry of External Affairs, Government of India",
-    image:"../certifications/Gaurav_Gaisenn_Bharat_Ko_Janiye_Certificate.png",
-  },{
-
+    image: "/certifications/Gaurav_Gaisenn_Bharat_Ko_Janiye_Certificate.png",
+    link: "#"
+  },
+  {
     id: 5,
     year: "2022",
     title: "Student World Impact Film Festival",
     organiser: "SWIFF, Waldwick, New Jersey, USA",
-    image:"../certifications/Gaurav-Gaisenn-Student-World-Impact-Film-Festival-Honorable-Mention-The-Quiet-Leadership-of-Carlo-Ancelotti-2022.jpg",
-  },{
+    image: "/certifications/Gaurav-Gaisenn-Student-World-Impact-Film-Festival-Honorable-Mention-The-Quiet-Leadership-of-Carlo-Ancelotti-2022.jpg",
+    link: "#"
+  },
+  {
     id: 6,
     year: "2021",
     title: "GCL New York AI+Healthcare Summit",
     organiser: "GCL, New York Chapter, USA",
-    image:"../certifications/Gaurav Gaisenn-GCL-NY-AI+Healthcare-Summit-2021.jpeg",
+    image: "/certifications/Gaurav_Gaisenn-GCL-NY-AI+Healthcare-Summit-2021.jpeg",
+    link: "#"
   }
 ];
 
@@ -57,7 +65,7 @@ const Certifications = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {certificationsData.map((item, index) => (
           <div 
-            key={index} 
+            key={item.id} /* FIXED: Replaced index key with stable item.id */
             className="glass-card p-6 flex flex-col h-full theme-card-hover border border-[var(--border-subtle)] rounded-xl relative overflow-hidden group bg-[var(--card-bg)]"
             data-aos="zoom-in" 
             data-aos-delay={(index % 3) * 100}
@@ -89,10 +97,10 @@ const Certifications = () => {
 
             {/* 3. Content Base Stacked Below */}
             <div className="flex flex-col flex-grow">
-              {/* Title */}
-              <h2 className="text-xl font-bold theme-text mb-2 leading-tight">
+              {/* Title - Changed to h3 for semantic hierarchy */}
+              <h3 className="text-xl font-bold theme-text mb-2 leading-tight">
                 {item.title}
-              </h2>
+              </h3>
               
               {/* Organiser */}
               <p className="text-purple-400 font-semibold text-sm mb-4">
