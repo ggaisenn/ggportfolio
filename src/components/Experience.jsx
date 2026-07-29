@@ -4,11 +4,19 @@ import { Award } from 'lucide-react';
 const Experience = () => {
   const roles = [
     {
+      title: 'Infotsav 25 - Volunteer',
+      period: '2025',
+      school: 'Infotsav — Atal Bihari Vajpayee Indian Institute of Information Technology and Management, Gwalior',
+      description: 'Anchor for the Inaugural Ceremony, Anchor for the PINNACLE Competition, and a Volunteer for the Managerial Division.',
+      active: false
+
+    },
+    {
       title: 'CBSE Head Boy Senior',
       period: '2024-25',
       school: 'Al Noor International School',
       description: 'Led the student body, organized major school events, and acted as a liaison between students and school administration.',
-      active: true
+      active: false
     },
     {
       title: 'CBSE Grade 11 Prefect',
