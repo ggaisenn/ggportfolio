@@ -13,6 +13,14 @@ const Achievements = () => {
     { year: '2023', title: 'Poem Recitation', event:'-', acheivement: '1st Place', issuer: 'AL NOOR INTERNATIONAL SCHOOL', venue:'Kingdom of Bahrain', date:'November 2023', type: 'gold' },
     { year: '2023', title: 'Elocution', event:'-', acheivement: '2nd Place', issuer: 'AL NOOR INTERNATIONAL SCHOOL', venue:'Kingdom of Bahrain', date:'October 2023', type: 'silver' },
     { year: '2023', title: 'Grade 10 Board Exam', event:'-', acheivement: ' School Subject Topper - Social Science', issuer: 'CBSE', venue:'-', date:'May, 2023', type: 'gold' },
+    { year: '2022', title: 'FILM MAKING COMPETITION', event:'Student World Impact Film Festival', acheivement: 'Honorable Mention', issuer: 'SWIFF', venue:'New Jersey, USA', date:'November, 2022', type: 'blue' },  
+    { year: '2022', title: 'READING FOR ALL COMPETITION', event:'-', acheivement: '1st Place', issuer: 'AL NOOR INTERNATIONAL SCHOOL', venue:'Kingdom of Bahrain', date:'March, 2022', type: 'gold' },
+    { year: '2021', title: 'AIDEATHON', event:'Middle/High School AI+Healthcare Summit', acheivement: '2nd Place', issuer: 'GirlsComputingLeague', venue:'New York, USA', date:'November, 2021', type: 'silver' },
+    { year: '2021', title: 'VIDEO MAKING COMPETITION', event:'Event: Technovation 2021 - VID-TECH', acheivement: '2nd Place', issuer: 'K. Ramakrishna College of Technology', venue:'Thiruchirappalli, Tamil Nadu, India', date:'October, 2021', type: 'silver' },
+    { year: '2021', title: 'PRESENTATION MAKING COMPETITION', event:'INDEPENDENCE DAY FEST', acheivement: '1st Place', issuer: 'LoopGood.org', venue:'India', date:'August, 2021', type: 'gold' },
+    { year: '2021', title: 'QUIZ COMPETITION', event:'INDEPENDENCE DAY FEST', acheivement: '2nd Place', issuer: 'LoopGood.org', venue:'India', date:'August, 2021', type: 'silver' },
+    { year: '2021', title: 'DEBATE COMPETITION', event:'-', acheivement: '3rd Place', issuer: 'LoopGood.org', venue:'India', date:'August, 2021', type: 'bronze' },
+    { year: '2021', title: 'DEBATE COMPETITION', event:'-', acheivement: '1st Place', issuer: 'LoopGood.org', venue:'India', date:'July, 2021', type: 'gold' },
   ];
 
   const getIconColor = (type) => {
@@ -37,7 +45,7 @@ const Achievements = () => {
           <div key={index} className="glass-card p-6 flex flex-col h-full theme-card-hover" data-aos="zoom-in" data-aos-delay={(index % 3) * 100}>
             <div className="flex justify-between items-start mb-4">
               <div className="w-12 h-12 rounded-full bg-[var(--card-bg)] flex items-center justify-center border border-[var(--card-border)]">
-                <Trophy className={getIconColor(item.type)} size={24} />
+                <Medal className={getIconColor(item.type)} size={35} />
               </div>
               <span className="text-sm font-bold theme-muted bg-[var(--card-bg)] px-3 py-1 rounded-full border border-[var(--card-border)]">
                 {item.year}

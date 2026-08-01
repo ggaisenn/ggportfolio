@@ -29,7 +29,7 @@ const Experience = () => {
       title: 'CBSE Grade 10 Prefect',
       period: '2022-23',
       school: 'Al Noor International School',
-      description: 'First major leadership role. Responsible for class representation and assisting teachers.',
+      description: 'First major leadership role. Responsible for grade representation and assisting teachers.',
       active: false
     }
   ];
