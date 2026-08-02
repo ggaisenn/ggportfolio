@@ -37,7 +37,7 @@ const Experience = () => {
   return (
     <section id="experience" className="pt-20">
       <div className="flex items-center gap-4 mb-12" data-aos="fade-right">
-        <h2 className="text-3xl md:text-4xl font-bold theme-text">Leadership Roles</h2>
+        <h2 className="text-3xl md:text-4xl font-bold theme-text">Experiences</h2>
         <div className="h-px bg-[var(--border-subtle)] flex-grow max-w-xs"></div>
       </div>
 
