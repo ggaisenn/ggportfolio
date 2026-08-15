@@ -97,6 +97,8 @@ const Activities = () => {
     return '-translate-x-full opacity-0 z-0';
   };
 
+  const doubleContent = [...contentCreationImages, ...contentCreationImages];
+
   return (
     <section id="activities" className="pt-20">
       <div className="flex items-center gap-4 mb-12" data-aos="fade-right">
@@ -164,13 +166,12 @@ const Activities = () => {
               </a>
             </div>
 
-            <h3 className="text-2xl font-bold text-orange-400 mb-4">Content Creation</h3>
-
+            <h3 className="text-2xl font-bold text-orange-400 mb-4">Content Creation</h3>     
             <p className="text-orange-200/90 leading-relaxed mb-6">
               Passionate about content creation, having produced videos on YouTube and a few short documentaries. My work has been showcased in film festivals and competitions, gaining valuable experience in storytelling and editing.
             </p>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               <div className="p-4 bg-[var(--card-bg-content))] rounded-lg border border-[var(--card-border-content)] flex items-center gap-4">
                 <Video className="text-orange-400" />
                 <div>
@@ -188,33 +189,29 @@ const Activities = () => {
             </div>
           </div>
 
-          {/* Content Creation Slider Frame Container */}
-          <div className="relative h-64 md:h-full min-h-[280px] rounded-xl overflow-hidden shadow-inner bg-slate-900/40 group/slider">
-            {contentCreationImages.map((imgUrl, idx) => (
-              <img
-                key={idx}
-                src={imgUrl}
-                alt={`Content Creation ${idx}`}
-                className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${getSlideClass(idx, content.current, content.prev)}`}
-              />
-            ))}
-
-            {contentCreationImages.length > 1 && (
-              <>
-                <button 
-                  onClick={handleContentPrev}
-                  className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+          {/* Slider Outer Box */}
+          <div className="relative w-full h-64 md:h-full min-h-[480px] rounded-xl overflow-hidden shadow-inner bg-slate-900/40 flex-none">
+            <div 
+              className="animate-queue-flow h-full flex"
+              style={{ 
+                '--item-count': contentCreationImages.length,
+                '--speed': '20s'
+              }}
+            >
+              {doubleContent.map((imgUrl, idx) => (
+                <div 
+                  key={idx} 
+                  className="h-full flex-shrink-0"
+                  style={{ width: `calc(100% / (${contentCreationImages.length} * 1.5))` }}
                 >
-                  <ChevronLeft size={20} />
-                </button>
-                <button 
-                  onClick={handleContentNext}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
-                >
-                  <ChevronRight size={20} />
-                </button>
-              </>
-            )}
+                  <img
+                    src={imgUrl}
+                    alt={`Content Creation ${idx}`}
+                    className="w-full h-full object-cover"
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

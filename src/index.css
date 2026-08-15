@@ -155,3 +155,20 @@ html.dark .theme-toggle-thumb {
 html.light .theme-toggle-thumb {
   transform: translateX(0px);
 }
+
+@keyframes dynamic-marquee {
+  0% { transform: translateX(0); }
+  /* Moves exactly by half the total length of the duplicated track */
+  100% { transform: translateX(-50%); }
+}
+
+.animate-queue-flow {
+  display: flex;
+  /* Dynamically sets overall width based on the unique number of items */
+  width: calc(var(--item-count) * 2 * 100%);
+  animation: dynamic-marquee var(--speed, 60s) linear infinite;
+}
+
+.animate-queue-flow:hover {
+  animation-play-state: paused;
+}
