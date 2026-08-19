@@ -19,7 +19,7 @@ const Hero = () => {
           <p className="text-lg md:text-xl theme-muted max-w-2xl mb-6 leading-relaxed drop-shadow-md text-justify md:text-left">
             I am a B.Tech Computer Science and Engineering student at ABV-IIITM Gwalior. I have always been driven by a desire to learn and achieve meaningful goals in life. 
             <span className="block mt-4">
-              My interest lies in Tooling and Frontend Development.
+              My interest lies in Systems and Tooling Engineering.
             </span>
           </p>
 
