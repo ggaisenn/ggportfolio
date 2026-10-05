@@ -43,8 +43,8 @@ function AppContent() {
             <Activities />
             <Projects />
             <Certifications/>
-            <Achievements />
             <Experience />
+            <Achievements />
             <Contact />
           </div>
         </main>
