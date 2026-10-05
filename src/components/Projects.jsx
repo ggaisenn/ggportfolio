@@ -1,8 +1,53 @@
-import React from 'react';
-import { Terminal, ExternalLink } from 'lucide-react';
+import React, { useState, useEffect, useRef } from 'react';
+import { Terminal, ExternalLink, ChevronLeft, ChevronRight, Globe } from 'lucide-react';
 import { FaGithub } from 'react-icons/fa';
 
 const Projects = () => {
+  const astralinxImages = [
+    "/projects/1.avif",
+    "/projects/2.avif",
+    "/projects/3.avif",
+    "/projects/4.avif",
+  ];
+
+  const [astralinxIdx, setAstralinxIdx] = useState({ current: 0, prev: null });
+  const astralinxLenRef = useRef(astralinxImages.length);
+
+  useEffect(() => {
+    astralinxLenRef.current = astralinxImages.length;
+  }, [astralinxImages.length]);
+
+  useEffect(() => {
+    if (astralinxLenRef.current <= 1) return;
+    const timer = setInterval(() => {
+      setAstralinxIdx((prev) => ({
+        prev: prev.current,
+        current: (prev.current + 1) % astralinxLenRef.current
+      }));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleAstralinxPrev = () => {
+    setAstralinxIdx((prev) => ({
+      prev: prev.current,
+      current: prev.current === 0 ? astralinxImages.length - 1 : prev.current - 1
+    }));
+  };
+
+  const handleAstralinxNext = () => {
+    setAstralinxIdx((prev) => ({
+      prev: prev.current,
+      current: (prev.current + 1) % astralinxImages.length
+    }));
+  };
+
+  const getSlideClass = (idx, current, prev) => {
+    if (idx === current) return 'translate-x-0 opacity-100 z-10';
+    if (idx === prev) return 'translate-x-full opacity-100 z-0';
+    return '-translate-x-full opacity-0 z-0';
+  };
+
   return (
     <section id="projects" className="pt-20">
       <div className="flex items-center gap-4 mb-12" data-aos="fade-right">
@@ -10,11 +55,74 @@ const Projects = () => {
         <div className="h-px bg-[var(--border-subtle)] flex-grow max-w-xs"></div>
       </div>
 
+      {/* ASTRALINX W.L.L. Website */}
+      <div className="glass-card p-8 md:p-10 mb-12 relative overflow-hidden group grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
+        <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+          <Terminal size={240} />
+        </div>
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-6">
+            <h3 className="text-3xl font-bold theme-text">ASTRALINX W.L.L.</h3>
+            <a href="https://astra-linx.com/" target="_blank" rel="noreferrer" className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center text-purple-400 hover:bg-purple-500/20 hover:text-purple-300 transition-colors shadow-sm border border-purple-500/20" title="Visit Website">
+              <Globe size={24} />
+            </a>
+          </div>
+          <p className="text-purple-400 font-medium mb-6 text-lg">Website</p>
+
+          <p className="theme-muted leading-relaxed mb-8">
+            Built a multi-page site presenting the range of solutions ASTRALINX provides across security, IT infrastructure, audio-visual, smart automation, events and marketing.
+          </p>
+
+
+          <div className="flex flex-wrap gap-2">
+            {['HTML5', 'CSS3', 'JavaScript (ES6+)'].map((tech) => (
+              <span key={tech} className="px-3 py-1 bg-[var(--card-bg)] theme-muted rounded-full text-sm font-medium border border-[var(--border-subtle)]">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Astralinx Image Slider */}
+        <div className="relative w-full rounded-xl overflow-hidden shadow-inner bg-slate-900/40 group/slider">
+          {/* Dummy image to force container to match exact aspect ratio */}
+          <img src={astralinxImages[0]} alt="placeholder" className="w-full h-auto opacity-0 pointer-events-none select-none" />
+          
+          {astralinxImages.map((imgUrl, idx) => (
+            <img
+              key={idx}
+              src={imgUrl}
+              alt={`ASTRALINX W.L.L. ${idx}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${getSlideClass(idx, astralinxIdx.current, astralinxIdx.prev)}`}
+            />
+          ))}
+
+          {astralinxImages.length > 1 && (
+            <>
+              <button
+                onClick={handleAstralinxPrev}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={handleAstralinxNext}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* ggcli Project */}
       <div className="glass-card p-8 md:p-10 mb-12 relative overflow-hidden group" data-aos="fade-up">
         <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity">
           <Terminal size={240} />
         </div>
-        
+
         <div className="relative z-10 flex flex-col md:flex-row gap-8">
           <div className="flex-1">
             <div className="flex items-center gap-4 mb-4">
@@ -24,7 +132,7 @@ const Projects = () => {
               </a>
             </div>
             <p className="text-purple-400 font-medium mb-6 text-lg">Command Line Interface Tool</p>
-            
+
             <p className="theme-muted leading-relaxed mb-8">
               A Command Line Interface tool built using Node.js. It features dynamic configuration loading via `cosmiconfig`, robust configuration validation using `ajv` schemas, detailed validation error formatting with `better-ajv-errors`, and namespace-based console logging.
             </p>
@@ -57,19 +165,19 @@ const Projects = () => {
               <p><span className="text-purple-600 dark:text-purple-400">Step 10:</span> Namespace debugging flag (`debug`) <span className="text-green-600 dark:text-green-400">✔</span></p>
               <p><span className="text-purple-600 dark:text-purple-400">Step 11:</span> Cross-platform URL format validation <span className="text-green-600 dark:text-green-400">✔</span></p>
               <p><span className="text-purple-600 dark:text-purple-400">Step 12:</span> Host system local app check (command-exists) <span className="text-green-600 dark:text-green-400">✔</span></p>
-              <p><span className="text-purple-600 dark:text-purple-400">Step 13:</span> (`www.`) protocol handling <span className="text-green-600 dark:text-green-400">✔</span></p> 
-              <p><span className="text-purple-600 dark:text-purple-400">Step 14:</span> macOS App Launch (e.g., --open Slack)	 <span className="text-green-600 dark:text-green-400">✔</span></p> 
-              <p><span className="text-purple-600 dark:text-purple-400">Step 15:</span> Cross-Platform App launcher <span className="text-green-600 dark:text-yellow-400">....</span></p>            
+              <p><span className="text-purple-600 dark:text-purple-400">Step 13:</span> (`www.`) protocol handling <span className="text-green-600 dark:text-green-400">✔</span></p>
+              <p><span className="text-purple-600 dark:text-purple-400">Step 14:</span> macOS App Launch (e.g., --open Slack)	 <span className="text-green-600 dark:text-green-400">✔</span></p>
+              <p><span className="text-purple-600 dark:text-purple-400">Step 15:</span> Cross-Platform App launcher <span className="text-green-600 dark:text-yellow-400">....</span></p>
             </div>
           </div>
         </div>
       </div>
-
+      {/* ggalloc Project */}
       <div className="glass-card p-8 md:p-10 relative overflow-hidden group" data-aos="fade-up">
         <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity">
           <Terminal size={240} />
         </div>
-        
+
         <div className="relative z-10 flex flex-col md:flex-row gap-8">
           <div className="flex-1">
             <div className="flex items-center gap-4 mb-4">
@@ -79,7 +187,7 @@ const Projects = () => {
               </a>
             </div>
             <p className="text-purple-400 font-medium mb-6 text-lg">Custom Dynamic Memory Allocator</p>
-            
+
             <p className="theme-muted leading-relaxed mb-8">
               A memory allocator built from scratch using raw POSIX system calls. Implements a custom heap manager with block splitting, memory coalescing, and free-list management. A deep-dive into how your OS actually hands memory to programs.
             </p>
