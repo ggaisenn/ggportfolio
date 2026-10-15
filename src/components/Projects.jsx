@@ -3,11 +3,52 @@ import { Terminal, ExternalLink, ChevronLeft, ChevronRight, Globe } from 'lucide
 import { FaGithub } from 'react-icons/fa';
 
 const Projects = () => {
+  const thermaImages = [
+    "/projects/therma/1.avif",
+    "/projects/therma/6.avif",
+    "/projects/therma/2.avif",
+    "/projects/therma/3.avif",
+    "/projects/therma/4.avif",
+    "/projects/therma/5.avif",
+  ];
+
+  const [thermaIdx, setThermaIdx] = useState({ current: 0, prev: null });
+  const thermaLenRef = useRef(thermaImages.length);
+
+  useEffect(() => {
+    thermaLenRef.current = thermaImages.length;
+  }, [thermaImages.length]);
+
+  useEffect(() => {
+    if (thermaLenRef.current <= 1) return;
+    const timer = setInterval(() => {
+      setThermaIdx((prev) => ({
+        prev: prev.current,
+        current: (prev.current + 1) % thermaLenRef.current
+      }));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const handleThermaPrev = () => {
+    setThermaIdx((prev) => ({
+      prev: prev.current,
+      current: prev.current === 0 ? thermaImages.length - 1 : prev.current - 1
+    }));
+  };
+
+  const handleThermaNext = () => {
+    setThermaIdx((prev) => ({
+      prev: prev.current,
+      current: (prev.current + 1) % thermaImages.length
+    }));
+  };
+
   const astralinxImages = [
-    "/projects/1.avif",
-    "/projects/2.avif",
-    "/projects/3.avif",
-    "/projects/4.avif",
+    "/projects/astra/1.avif",
+    "/projects/astra/2.avif",
+    "/projects/astra/3.avif",
+    "/projects/astra/4.avif",
   ];
 
   const [astralinxIdx, setAstralinxIdx] = useState({ current: 0, prev: null });
@@ -55,6 +96,67 @@ const Projects = () => {
         <div className="h-px bg-[var(--border-subtle)] flex-grow max-w-xs"></div>
       </div>
 
+      {/* ThermaSync-EV */}
+      <div className="glass-card p-8 md:p-10 mb-12 relative overflow-hidden group grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
+        <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
+          <Terminal size={240} />
+        </div>
+
+        <div className="relative z-10">
+          <div className="flex items-center gap-4 mb-4">
+            <h3 className="text-3xl font-bold theme-text">ThermaSync-EV</h3>
+            <a href="https://github.com/ggaisenn/ggthermalsync" target="_blank" rel="noreferrer" className="theme-muted hover:theme-text transition-colors">
+              <FaGithub size={24} />
+            </a>
+          </div>
+          <p className="text-purple-400 font-medium mb-6 text-lg">EV Thermal Simulation & Telemetry Pipeline</p>
+
+          <p className="theme-muted leading-relaxed mb-8">
+            Real-Time Telemetry Engine simulating EV battery thermal behavior. Features a C++17 physics core with PID cooling logic, Node.js TCP/WebSocket backend for safety validation and ring-buffer history and Three.js/Chart.js 3D browser dashboard.
+          </p>
+
+          <div className="flex flex-wrap gap-2">
+            {['C++17', 'CMake', 'Node.js', 'Three.js', 'Chart.js', 'Docker'].map((tech) => (
+              <span key={tech} className="px-3 py-1 bg-[var(--card-bg)] theme-muted rounded-full text-sm font-medium border border-[var(--border-subtle)]">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* ThermaSync-EV Image Slider */}
+        <div className="relative w-full rounded-xl overflow-hidden shadow-inner bg-slate-900/40 group/slider">
+          {/* Dummy image to force container to match exact aspect ratio */}
+          <img src={thermaImages[0]} alt="placeholder" className="w-full h-auto opacity-0 pointer-events-none select-none" />
+          
+          {thermaImages.map((imgUrl, idx) => (
+            <img
+              key={idx}
+              src={imgUrl}
+              alt={`ThermaSync-EV ${idx}`}
+              className={`absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)] ${getSlideClass(idx, thermaIdx.current, thermaIdx.prev)}`}
+            />
+          ))}
+
+          {thermaImages.length > 1 && (
+            <>
+              <button
+                onClick={handleThermaPrev}
+                className="absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={handleThermaNext}
+                className="absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 text-white backdrop-blur-sm opacity-0 group-hover/slider:opacity-100 transition-opacity hover:bg-black/70"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </>
+          )}
+        </div>
+      </div>
+
       {/* ASTRALINX W.L.L. Website */}
       <div className="glass-card p-8 md:p-10 mb-12 relative overflow-hidden group grid md:grid-cols-2 gap-8 items-center" data-aos="fade-up">
         <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity pointer-events-none">
@@ -73,7 +175,6 @@ const Projects = () => {
           <p className="theme-muted leading-relaxed mb-8">
             Built a multi-page site presenting the range of solutions ASTRALINX provides across security, IT infrastructure, audio-visual, smart automation, events and marketing.
           </p>
-
 
           <div className="flex flex-wrap gap-2">
             {['HTML5', 'CSS3', 'JavaScript (ES6+)'].map((tech) => (
@@ -166,12 +267,13 @@ const Projects = () => {
               <p><span className="text-purple-600 dark:text-purple-400">Step 11:</span> Cross-platform URL format validation <span className="text-green-600 dark:text-green-400">✔</span></p>
               <p><span className="text-purple-600 dark:text-purple-400">Step 12:</span> Host system local app check (command-exists) <span className="text-green-600 dark:text-green-400">✔</span></p>
               <p><span className="text-purple-600 dark:text-purple-400">Step 13:</span> (`www.`) protocol handling <span className="text-green-600 dark:text-green-400">✔</span></p>
-              <p><span className="text-purple-600 dark:text-purple-400">Step 14:</span> macOS App Launch (e.g., --open Slack)	 <span className="text-green-600 dark:text-green-400">✔</span></p>
+              <p><span className="text-purple-600 dark:text-purple-400">Step 14:</span> macOS App Launch (e.g., --open Slack)  <span className="text-green-600 dark:text-green-400">✔</span></p>
               <p><span className="text-purple-600 dark:text-purple-400">Step 15:</span> Cross-Platform App launcher <span className="text-green-600 dark:text-yellow-400">....</span></p>
             </div>
           </div>
         </div>
       </div>
+
       {/* ggalloc Project */}
       <div className="glass-card p-8 md:p-10 relative overflow-hidden group" data-aos="fade-up">
         <div className="absolute -right-10 -top-10 opacity-5 group-hover:opacity-10 transition-opacity">
